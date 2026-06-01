@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Cyber Craft Shield Blog</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+
+<link rel="stylesheet" href="style.css">
+<style>
+    /* =========================
+   GLOBAL
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:#050816;
+    color:white;
+    overflow-x:hidden;
+}
+
+/* Scrollbar */
+
+::-webkit-scrollbar{
+    width:10px;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#00d9ff;
+    border-radius:10px;
+}
+
+/* =========================
+   NAVBAR
+========================= */
+
+nav{
+    width:100%;
+    padding:20px 8%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    position:fixed;
+    top:0;
+    z-index:1000;
+
+    background:rgba(0,0,0,0.4);
+    backdrop-filter:blur(10px);
+}
+
+.logo{
+    font-size:28px;
+    font-family:'Orbitron',sans-serif;
+    color:#00d9ff;
+    font-weight:bold;
+}
+
+nav ul{
+    display:flex;
+    gap:35px;
+    list-style:none;
+}
+
+nav ul li a{
+    text-decoration:none;
+    color:white;
+    position:relative;
+    padding-bottom:8px;
+    transition:0.3s;
+}
+
+nav ul li a::after{
+    content:'';
+    position:absolute;
+    left:50%;
+    bottom:0;
+    width:0%;
+    height:3px;
+
+    background:linear-gradient(
+        90deg,
+        #00d9ff,
+        #00ffee
+    );
+
+    transform:translateX(-50%);
+    transition:0.4s;
+    border-radius:10px;
+
+    box-shadow:
+    0 0 10px #00d9ff,
+    0 0 20px #00d9ff;
+}
+
+nav ul li a:hover::after,
+nav ul li a.active::after{
+    width:100%;
+}
+
+nav ul li a:hover{
+    color:#00d9ff;
+}
+
+/* =========================
+   HERO SECTION
+========================= */
+
+.blog-hero{
+    min-height:80vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:150px 8% 100px;
+    position:relative;
+}
+
+/* Grid background */
+
+.blog-hero::before{
+    content:'';
+    position:absolute;
+    inset:0;
+
+    background:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+
+    background-size:40px 40px;
+    z-index:-2;
+}
+
+/* Glow */
+
+.blog-hero::after{
+    content:'';
+    position:absolute;
+    width:600px;
+    height:600px;
+
+    background:radial-gradient(
+        rgba(0,217,255,0.18),
+        transparent 70%
+    );
+
+    z-index:-1;
+    border-radius:50%;
+}
+
+.hero-content h1{
+    font-size:70px;
+    font-family:'Orbitron',sans-serif;
+    line-height:1.2;
+}
+
+.hero-content h1 span{
+    color:#00d9ff;
+}
+
+.hero-content p{
+    margin-top:25px;
+    color:#a8b6d3;
+    max-width:800px;
+    line-height:1.8;
+    margin-inline:auto;
+}
+
+/* Buttons */
+
+.hero-buttons{
+    margin-top:40px;
+    display:flex;
+    justify-content:center;
+    gap:20px;
+}
+
+.btn{
+    padding:14px 30px;
+    border:none;
+    border-radius:12px;
+    cursor:pointer;
+    transition:0.4s;
+    font-size:16px;
+}
+
+.primary-btn{
+    background:#00d9ff;
+    color:white;
+}
+
+.secondary-btn{
+    background:transparent;
+    border:2px solid #00d9ff;
+    color:#00d9ff;
+}
+
+.btn:hover{
+    transform:translateY(-5px);
+    box-shadow:0 0 25px rgba(0,217,255,0.5);
+}
+
+/* =========================
+   SECTION TITLE
+========================= */
+
+.section-title{
+    text-align:center;
+    margin-bottom:60px;
+}
+
+.section-title h2{
+    font-size:45px;
+    color:#00d9ff;
+    font-family:'Orbitron',sans-serif;
+}
+
+.section-title p{
+    margin-top:15px;
+    color:#9fb3d1;
+}
+
+/* =========================
+   BLOG POSTS
+========================= */
+
+.blog-section{
+    padding:100px 8%;
+}
+
+.blog-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:35px;
+}
+
+.blog-card{
+    background:#0b1020;
+    border:1px solid rgba(0,217,255,0.15);
+    border-radius:25px;
+    overflow:hidden;
+    transition:0.4s;
+    position:relative;
+}
+
+.blog-card:hover{
+    transform:translateY(-10px);
+    border-color:#00d9ff;
+
+    box-shadow:
+    0 0 25px rgba(0,217,255,0.2);
+}
+
+/* Image */
+
+.blog-image{
+    height:220px;
+    overflow:hidden;
+}
+
+.blog-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:0.5s;
+}
+
+.blog-card:hover img{
+    transform:scale(1.08);
+}
+
+/* Content */
+
+.blog-content{
+    padding:30px;
+}
+
+.blog-tag{
+    display:inline-block;
+    padding:8px 15px;
+    border-radius:30px;
+    background:rgba(0,217,255,0.1);
+    color:#00d9ff;
+    margin-bottom:18px;
+    font-size:14px;
+}
+
+.blog-content h3{
+    margin-bottom:18px;
+    font-size:24px;
+}
+
+.blog-content p{
+    color:#b6c3dd;
+    line-height:1.8;
+}
+
+.read-more{
+    margin-top:25px;
+    display:inline-block;
+    color:#00ffee;
+    text-decoration:none;
+    font-weight:600;
+}
+
+/* =========================
+   CYBER TIPS
+========================= */
+
+.tips-section{
+    padding:100px 8%;
+    background:#02040d;
+}
+
+.tips-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:30px;
+}
+
+.tip-box{
+    background:#0c1225;
+    border:1px solid rgba(0,217,255,0.1);
+    padding:35px;
+    border-radius:20px;
+    transition:0.4s;
+}
+
+.tip-box:hover{
+    transform:translateY(-8px);
+    border-color:#00d9ff;
+}
+
+.tip-box h4{
+    color:#00ffee;
+    margin-bottom:15px;
+    font-size:22px;
+}
+
+.tip-box p{
+    color:#aebddb;
+    line-height:1.8;
+}
+
+/* =========================
+   NEWSLETTER
+========================= */
+
+.newsletter{
+    padding:120px 8%;
+    text-align:center;
+}
+
+.newsletter-box{
+    max-width:850px;
+    margin:auto;
+
+    background:#0b1020;
+    padding:60px;
+    border-radius:30px;
+
+    border:1px solid rgba(0,217,255,0.15);
+
+    box-shadow:
+    0 0 40px rgba(0,217,255,0.08);
+}
+
+.newsletter-box h2{
+    font-size:45px;
+    color:#00d9ff;
+    font-family:'Orbitron',sans-serif;
+}
+
+.newsletter-box p{
+    margin-top:20px;
+    color:#a9bad7;
+    line-height:1.8;
+}
+
+/* Form */
+
+.newsletter-form{
+    margin-top:40px;
+    display:flex;
+    gap:15px;
+    justify-content:center;
+    flex-wrap:wrap;
+}
+
+.newsletter-form input{
+    width:350px;
+    padding:18px;
+    border:none;
+    outline:none;
+    border-radius:12px;
+    background:#11182d;
+    color:white;
+}
+
+.newsletter-form button{
+    padding:18px 30px;
+    border:none;
+    border-radius:12px;
+    background:#00d9ff;
+    color:white;
+    cursor:pointer;
+}
+
+/* =========================
+   CTA
+========================= */
+
+.cta-section{
+    padding:120px 8%;
+    text-align:center;
+}
+
+.cta-box{
+    background:linear-gradient(
+        135deg,
+        rgba(0,217,255,0.15),
+        rgba(0,255,170,0.05)
+    );
+
+    padding:80px;
+    border-radius:30px;
+
+    border:1px solid rgba(0,217,255,0.15);
+}
+
+.cta-box h2{
+    font-size:55px;
+    font-family:'Orbitron',sans-serif;
+}
+
+.cta-box p{
+    margin-top:20px;
+    color:#b5c5de;
+    line-height:1.8;
+}
+
+.cta-box button{
+    margin-top:35px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    background:#02040d;
+    padding:40px;
+    text-align:center;
+    color:#8294b6;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:768px){
+
+    .hero-content h1{
+        font-size:45px;
+    }
+
+    .section-title h2{
+        font-size:35px;
+    }
+
+    .newsletter-box{
+        padding:40px 25px;
+    }
+
+    .newsletter-box h2{
+        font-size:35px;
+    }
+
+    .cta-box{
+        padding:50px 25px;
+    }
+
+    .cta-box h2{
+        font-size:38px;
+    }
+
+}
+nav li {
+    list-style-type: none;
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+
+<nav>
+
+    <div class="logo">
+        Cyber Craft Shield
+    </div>
+
+
+        <li><a href="index.html">Home</a></li>
+        <li><a href="# service">Services</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a class="active" href="#">Blog</a></li>
+        <li><a href="contact.html">Contact</a></li>
+    
+
+</nav>
+
+<!-- HERO -->
+
+<section class="blog-hero">
+
+    <div class="hero-content">
+
+        <h1>
+            Cybersecurity <span>Insights</span><br>
+            & Digital Protection
+        </h1>
+
+        <p>
+            Stay updated with modern cybersecurity trends,
+            expert protection strategies, threat intelligence,
+            and practical tips to secure your business online.
+        </p>
+
+        <div class="hero-buttons">
+            <button class="btn primary-btn">
+                Read Articles
+            </button>
+
+            <button class="btn secondary-btn">
+                Contact Experts
+            </button>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- BLOG POSTS -->
+
+<section class="blog-section">
+
+    <div class="section-title">
+        <h2>Featured Articles</h2>
+        <p>
+            Explore the latest cybersecurity knowledge
+            and protection strategies.
+        </p>
+    </div>
+
+    <div class="blog-grid">
+
+        <!-- CARD -->
+
+        <div class="blog-card">
+
+            <div class="blog-image">
+                <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1200&auto=format&fit=crop" alt="">
+            </div>
+
+            <div class="blog-content">
+
+                <span class="blog-tag">
+                    Website Security
+                </span>
+
+                <h3>
+                    How To Protect Your Website From Hackers
+                </h3>
+
+                <p>
+                    Learn modern strategies to secure your website,
+                    prevent unauthorized access, and defend against
+                    cyber attacks.
+                </p>
+
+                <a href="#" class="read-more">
+                    Read More →
+                </a>
+
+            </div>
+
+        </div>
+
+        <!-- CARD -->
+
+        <div class="blog-card">
+
+            <div class="blog-image">
+                <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop" alt="">
+            </div>
+
+            <div class="blog-content">
+
+                <span class="blog-tag">
+                    Threat Intelligence
+                </span>
+
+                <h3>
+                    Understanding Modern Phishing Attacks
+                </h3>
+
+                <p>
+                    Discover how phishing scams work and how businesses
+                    can identify suspicious emails before damage occurs.
+                </p>
+
+                <a href="#" class="read-more">
+                    Read More →
+                </a>
+
+            </div>
+
+        </div>
+
+        <!-- CARD -->
+
+        <div class="blog-card">
+
+            <div class="blog-image">
+                <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=1200&auto=format&fit=crop" alt="">
+            </div>
+
+            <div class="blog-content">
+
+                <span class="blog-tag">
+                    Business Protection
+                </span>
+
+                <h3>
+                    Why Small Businesses Need Cybersecurity
+                </h3>
+
+                <p>
+                    Small businesses are major targets for cyber attacks.
+                    Learn why strong protection is essential for growth.
+                </p>
+
+                <a href="#" class="read-more">
+                    Read More →
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- CYBER TIPS -->
+
+<section class="tips-section">
+
+    <div class="section-title">
+        <h2>Quick Security Tips</h2>
+        <p>
+            Simple actions that improve digital safety.
+        </p>
+    </div>
+
+    <div class="tips-grid">
+
+        <div class="tip-box">
+            <h4>🔒 Use Strong Passwords</h4>
+
+            <p>
+                Create unique passwords with a mix of
+                symbols, numbers, and uppercase letters.
+            </p>
+        </div>
+
+        <div class="tip-box">
+            <h4>📱 Enable 2FA</h4>
+
+            <p>
+                Add an extra layer of protection to
+                accounts using two-factor authentication.
+            </p>
+        </div>
+
+        <div class="tip-box">
+            <h4>⚠ Avoid Suspicious Links</h4>
+
+            <p>
+                Never click unknown links or download
+                files from untrusted sources.
+            </p>
+        </div>
+
+        <div class="tip-box">
+            <h4>💾 Backup Your Data</h4>
+
+            <p>
+                Regular backups help protect important
+                information from ransomware attacks.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- NEWSLETTER -->
+
+<section class="newsletter">
+
+    <div class="newsletter-box">
+
+        <h2>
+            Get Weekly Cybersecurity Updates
+        </h2>
+
+        <p>
+            Subscribe to receive the latest cybersecurity
+            news, protection strategies, and expert insights.
+        </p>
+
+        <div class="newsletter-form">
+
+            <input type="email"
+            placeholder="Enter your email">
+
+            <button>
+                Subscribe
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- CTA -->
+
+<section class="cta-section">
+
+    <div class="cta-box">
+
+        <h2>
+            Ready To Secure Your Business?
+        </h2>
+
+        <p>
+            Cyber Craft Shield provides modern protection
+            solutions designed to defend your business
+            against evolving cyber threats.
+        </p>
+
+        <button class="btn primary-btn">
+            Get Protected Today
+        </button>
+
+    </div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+    © 2026 Cyber Craft Shield | All Rights Reserved
+</footer>
+
+</body>
+</html>
